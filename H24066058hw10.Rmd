@@ -1,0 +1,356 @@
+---
+title: "H24066058HW10"
+author: "SingWen"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#R language
+
+##1. basics 
+ 
+ 
+
+>Addition `+` 
+
+
+```{r,}
+4+49
+```
+
+>substraction`-`
+```{r}
+15-8
+```
+
+>multiply`*`
+```{r}
+3*4
+```
+
+>divide`/`
+```{r}
+16/4
+```
+ 
+ 
+
+####Others
+ 
+
+>a sequence from 1 to n
+```{r}
+1:20
+```
+  
+ 
+
+>power
+```{r}
+2^3
+```
+
+>remainder
+```{r}
+31%%7
+```
+
+>quotient
+```{r}
+31%/%7
+```
+
+
+###Name a variable:
+
+
+####Example:Initial *R = 3000* , Interest Rate *i=0.0025* , Period *n = 30*  , Final Balance M *P*
+$$P = R (1+i)^n$$
+ 
+> *= *or *->*
+```{r}
+R = 3000
+i = 0.0025
+interest.30 = (1 + i)^30   #1.077783
+P = 3000 * interest.30
+P
+```
+
+####Functions for finding the parameters
+`
+
+```{r}
+x = 1:10
+```
+
+#####Mean
+$$\bar{X} = \frac{1}{n} \sum_{i=1}^nX_i$$
+>`mean()`
+```{r}
+mean(x)
+```
+####variance
+
+$$s^2 = \frac{1}{n-1} \sum_{i=1}^n(x_i-\bar{x})^2$$
+>`var()`, the formula in R is divided by n-1
+
+```{r}
+var(x)
+```
+
+>Median
+```{r}
+median(x)
+```
+
+###2. R Graph
+>`plot() scattor plot
+
+```{r}
+x = seq(1,10)
+y = x^2 - 10*x
+plot(x,y)
+```
+ 
+>*type = "l"* for drawing a line
+```{r}
+plot(x,y,type="l")
+```
+ 
+>matrix plot for multi variable
+```{r}
+library("ISLR")
+plot(Auto)
+```
+
+>`barplot()`
+```{r}
+barplot(VADeaths,beside=TRUE,legend=TRUE,ylim=c(0,90),
+ylab="Deaths per 1000",main="Death rates in Virginia")
+```
+
+>`pie()`
+*col* can change the color
+```{r}
+groupsizes=c(18,30,32,10,10)
+labels=c("??","?A","??","?B","??")
+pie(groupsizes,labels,col=c("grey40","white","grey","black","green"))
+
+```
+
+>`hist()`
+```{r}
+x = c(12,15,13,20,14,16,10,10,8,15)
+hist(x)
+
+```
+ 
+change the breaks
+```{r}
+hist(x,breaks=c(8,10,11,13,15,19,20))
+```
+
+>`par()`
+
+*mfrow* setting the plot that can show in R
+```{r}
+par(mfrow=c(1,2))
+x = 1:10
+y = 2*x+1
+plot(x,y)
+hist(y)
+```
+ 
+*mar*the margin of the plot, the order is *c(bottom, left, top, right)* 
+```{r}
+par(mar=c(5,6,10,7)+0.1)
+plot(c(1,9),c(0,50),type="n",xlab="" , ylab="")
+title("scatter plot")
+```
+
+>Addition on Plots 
+
+`point()`
+```{}
+point(6,20)
+```
+
+```{r echo = FALSE}
+plot(c(1,9),c(0,50),type="n",xlab="" , ylab="")
+title("scatter plot")
+points(6,20)
+```
+ 
+>`text()`
+```{}
+text(6,40,"Plot region")
+text(6,20,"(6,20)",adj=c(0,5,2))
+text(6,20,"(6,20)")
+```
+
+```{r echo = FALSE}
+plot(c(1,9),c(0,50),type="n",xlab="" , ylab="")
+title("scatter plot")
+text(6,40,"Plot region")
+points(6,20)
+text(6,20,"(6,20)")
+```
+ 
+*adj* to change the position
+```{}
+text(6,20,"(6,20)",adj=c(0,5,2))
+```
+
+```{r echo = FALSE}
+plot(c(1,9),c(0,50),type="n",xlab="" , ylab="")
+title("scatter plot")
+text(6,40,"Plot region")
+points(6,20)
+text(6,20,"(6,20)",adj=c(0,5,2))
+text(6,20,"(6,20)")
+```
+ 
+>`mtext()`
+
+side 1,2,3,4 is botton,left,up,right
+```{}
+mtext(paste("Margin",1:4),side=1:4,line=3)
+mtext(paste("Line",0:4),side=1,line=0:4,at=3,cex=0.6)
+mtext(paste("Line",0:4),side=2,line=0:4,at=15,cex=0.6)
+mtext(paste("Line",0:10),side=3,line=0:10,at=3,cex=0.6)
+mtext(paste("Line",0:7),side=4,line=0:7,at=15,cex=0.6)
+```
+
+
+```{r echo = FALSE}
+plot(c(1,9),c(0,50),type="n",xlab="" , ylab="")
+title("scatter plot")
+text(6,40,"Plot region")
+points(6,20)
+text(6,20,"(6,20)",adj=c(0,5,2))
+text(6,20,"(6,20)")
+mtext(paste("Margin",1:4),side=1:4,line=3)
+mtext(paste("Line",0:4),side=1,line=0:4,at=3,cex=0.6)
+mtext(paste("Line",0:4),side=2,line=0:4,at=15,cex=0.6)
+mtext(paste("Line",0:10),side=3,line=0:10,at=3,cex=0.6)
+mtext(paste("Line",0:7),side=4,line=0:7,at=15,cex=0.6)
+```
+ 
+>Others
+
+`abline()`,`arrows()`,`legend`
+ 
+
+###3. Linear algebra in R
+####Vectprs
+>`c()`
+
+```{r}
+x = c(1,3,5,7,9)
+x
+```
+
+>Index
+
+```{r}
+x[3]
+x[c(1,3,5)]
+x[2:4]
+```
+ 
+ 
+>arithmetic
+
+```{r}
+x * 3
+x - 5
+x ^ 2
+```
+
+>`seq()`,`rep()`
+
+
+```{r}
+seq(1,21,by=2)    
+rep(3,12)  #repeat the value 3, 12 times
+rep(seq(2,20,by=2),2)  #repeat the pattern 2 4 ...20,twice
+rep(c(1,4),c(3,2))  #repeat 1, 3 times and 4, twice
+rep(c(1,4),each=3)  #repeat each value 3 times
+```
+ 
+ 
+###Matrix
+`matrix()`,*nrow* to set the number of row
+```{r}
+m = matrix(1:6,nrow = 2,ncol = 3)
+m
+```
+ 
+>`cbind()` combing vectors
+```{r}
+x = seq(1,3)
+x2 = x^2
+X = cbind(x,x2)
+X
+```
+
+
+>Index
+
+```{r}
+m[1,2]  # element at first row, second column
+m[1,]   # all elements in firt row
+m[,1]   # all elements in first column
+```
+ 
+ 
+>dimension, determinant, diagonal, transpose
+```{r}
+H = matrix(1:9,nrow=3)
+dim(X)
+det(H)
+diag(H)
+t(H)
+```
+
+ 
+
+>arithmetic
+```{r}
+Y = 2*X
+Y
+Y + X
+X * Y   #???��ۭ?
+t(Y)%*%X  #?x?}?ۭ?
+crossprod(Y,X)   #?x?}?ۭ?
+```
+ 
+>`Solve()` 
+ 
+ 
+$$Ax = b$$
+```{r}
+A = matrix(c(1,1/2,1/3,1/2,1/3,1/4,1/3,1/4,1/5),nrow=3)
+b = c(1,2,3)
+x = solve(A,b)
+x
+```
+ 
+>eigenvalue,eigevector
+ 
+ 
+```{r}
+eigen(H)
+```
+
+
+ 
+ 
+ 
+ 
+
+
+
